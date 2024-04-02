@@ -5,20 +5,50 @@
             <p>Welcome, {{ Auth::user()->firstname }}</p>
         </h2>
     </x-slot>
-    <div class="grid grid-cols-2 py-5">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 ">
-            <div class="bg-white dark:bg-gray-800 sm:rounded-lg">
+    <div class="grid grid-cols-3 py-5">
+        <div class="max-w-2xl sm:px-4 lg:px-2">
+            <div class="bg-white dark:bg-gray-800 border border-gray-400 sm:rounded-lg ">
                 <div class="px-4 py-2">
                     <div class="sm:col-span-2">
-                        <img class="h-80 w-80 rounded-full mx-auto" src="{{ Auth::user()->getImageURL() }}"
+                        <img class="h-72 w-72 rounded-full mx-auto" src="{{ Auth::user()->getImageURL() }}"
                             alt="Profile Picture">
                     </div>
                 </div>
             </div>
+            <div class="px-auto py-2">
+                <dd class="bg-white dark:bg-gray-800 mt-2 text-sm text-gray-900">
+                    <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-400">
+
+                        @foreach ($documents as $doc)
+                            <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+                                <div class="flex w-0 flex-1 items-center">
+                                    <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                                        <span class="truncate font-medium text-gray-100">Document:
+                                            {{ $doc->filename }}</span>
+                                    </div>
+                                </div>
+                                <div class="ml-4 flex-shrink-0">
+                                    <a href="{{ $doc->getFileURL() }}" target="_blank"
+                                        class="font-medium text-indigo-600 hover:text-indigo-500">View</a>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </dd>
+            </div>
+
+
+
         </div>
-        <div>
-            <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="col-span-2">
+            <div class="max-w-4xl mx-auto sm:px-4 lg:px-2">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm  sm:rounded-lg border border-gray-400">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <div class="px-4 sm:px-0">
                             <h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-gray-100">Player
@@ -111,6 +141,9 @@
             </div>
         </div>
     </div>
+
+
+
 
 
 </x-app-layout>

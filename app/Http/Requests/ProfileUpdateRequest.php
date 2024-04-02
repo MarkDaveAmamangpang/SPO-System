@@ -34,10 +34,12 @@ class ProfileUpdateRequest extends FormRequest
             'birthdate' => ['required', 'date'],
             'idnumber' => ['required', 'string', 'max:255'], // added idnumber validation
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
-            'profile_picture' => ['nullable', 'image', 'max:1024'], // added profile_picture validation
+            'profile_picture' => ['nullable', 'image', 'max:2024'], // addSed profile_picture validation
         ];
 
 
      
     }
+
+    
 }
