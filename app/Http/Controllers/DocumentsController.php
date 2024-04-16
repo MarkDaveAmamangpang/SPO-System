@@ -35,6 +35,6 @@ class DocumentsController extends Controller
         // Return a response, redirect, or whatever is appropriate
         // return response()->json(['message' => 'Document uploaded successfully'], 201);
         return redirect()->route('profile.edit')->with('success', 'Document uploaded successfully.');
-
+        
     }
 }

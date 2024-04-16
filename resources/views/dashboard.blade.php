@@ -29,7 +29,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                     <div class="ml-4 flex min-w-0 flex-1 gap-2">
-                                        <span class="truncate font-medium text-gray-100">Document:
+                                        <span class="truncate font-medium text-gray-900">Document:
                                             {{ $doc->filename }}</span>
                                     </div>
                                 </div>
