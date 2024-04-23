@@ -23,7 +23,7 @@ class DocumentsController extends Controller
         $file = $request->file('file');
         
         // Store the file in the 'documents' directory
-        $path = $file->store('documents');
+        $path = $file->store('documents', 'public');
 
         // Create a new document record in the database
         $document = new Document();

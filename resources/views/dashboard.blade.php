@@ -2,10 +2,12 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{-- {{ __('Welcome, Player') }} --}}
-            <p>Welcome, {{ Auth::user()->firstname }}</p>
+            <p>Welcome {{ Auth::user()->type == 'player' ? 'Player' : 'Coach' }},
+                {{ Auth::user()->firstname }}
+            </p>
         </h2>
     </x-slot>
-    <div class="grid grid-cols-3 py-5">
+    <div class="grid grid-cols-3 py-5 px-3">
         <div class="max-w-2xl sm:px-4 lg:px-2">
             <div class="bg-white dark:bg-gray-800 border border-gray-400 sm:rounded-lg ">
                 <div class="px-4 py-2">
@@ -15,8 +17,13 @@
                     </div>
                 </div>
             </div>
+
+
             <div class="px-auto py-2">
-                <dd class="bg-white dark:bg-gray-800 mt-2 text-sm text-gray-900">
+                <div class="bg-blue-900 text-white py-2 px-5 rounded-md mb-1 mt-2">
+                    <h2 class="text-lg font-semibold">Document</h2>
+                </div>
+                <dd class="bg-white dark:bg-gray-800 text-sm text-gray-900">
                     <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-400">
 
                         @foreach ($documents as $doc)
@@ -43,22 +50,15 @@
                 </dd>
             </div>
 
-
-
         </div>
         <div class="col-span-2">
             <div class="max-w-4xl mx-auto sm:px-4 lg:px-2">
+                <div class="bg-blue-900 text-white py-2 px-4 rounded-md mb-1">
+                    <h2 class="text-lg font-semibold">Personal details</h2>
+                </div>
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm  sm:rounded-lg border border-gray-400">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <div class="px-4 sm:px-0">
-                            <h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-gray-100">Player
-                                Information
-                            </h3>
-                            <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500 dark:text-gray-100">Personal
-                                details
-                            </p>
-                        </div>
-                        <div class="mt-6 border-t border-gray-100">
+                    <div class="pl-4 text-gray-900 dark:text-gray-100">
+                        <div class="border-t border-gray-100">
                             <dl class="divide-y divide-gray-100">
                                 <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                     <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">First
@@ -133,12 +133,41 @@
                                         <p>{{ Auth::user()->email }}</p>
                                     </dd>
                                 </div>
-                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="max-w-4xl mx-auto sm:px-4 lg:px-2">
+                <div class="bg-blue-900 text-white py-2 px-4 rounded-md mt-2">
+                    <h2 class="text-lg font-semibold">Achievements</h2>
+                </div>
+
+                <div
+                    class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg border border-gray-400 mt-1">
+                    <div class="pl-4 text-gray-900 dark:text-gray-100">
+                        <div class="border-t border-gray-100">
+                            <dl class="divide-y divide-gray-100">
+                                @foreach ($achievements as $awards)
+                                    <div class="px-2 py-4 sm:grid sm:grid-cols-3 sm:gap-1 sm:px-0">
+                                        <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
+                                            <p>{{ $awards->event }}</p>
+                                        </dt>
+                                        <dt class="text-sm leading-6 text-gray-700 dark:text-gray-100 sm:mt-0">
+                                            <p>{{ $awards->sportstype }}</p>
+                                        </dt>
+                                        <dt class="text-sm leading-6 text-gray-700 dark:text-gray-100 sm:mt-0">
+                                            <p>{{ $awards->placing }}</p>
+                                        </dt>
+
+                                    </div>
+                                @endforeach
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 

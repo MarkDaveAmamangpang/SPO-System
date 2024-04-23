@@ -27,6 +27,7 @@ class ProfileController extends Controller
         return view('profile.edit', [
             'user' => $user,
             'document' => $documents, // Pass the documents to the view
+            // 'achievements' => $achievements,
         ]);
     }
 
@@ -39,15 +40,6 @@ class ProfileController extends Controller
 
         $user->fill($request->validated());
 
-        // $request->user()->fill($request->validated());
-        // dd($request->all());
-        // if(request()->has('profile_picture')){
-        //     $imagePath = request('profile_picture')->store('profile', 'public');
-        //     $user->profile_picture = $imagePath;
-
-        //     Storage::disk('public')->delete($user->profile_picture);
-        // }
-
         if (request()->hasFile('profile_picture')) {
             // Store the new profile picture
             $newImagePath = request()->file('profile_picture')->store('profile', 'public');
@@ -58,6 +50,7 @@ class ProfileController extends Controller
                 $oldImagePath = storage_path('app/public/' . $user->profile_picture);
                 
                 // Check if the old file exists before attempting to delete it
+                // this part Doesn't work as expected huhuhu
                 if (file_exists($oldImagePath)) {
                     // Delete the old profile picture
                     unlink($oldImagePath);
