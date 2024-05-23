@@ -1,8 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{-- {{ __('Welcome, Player') }} --}}
-            <p>Welcome {{ Auth::user()->type == 'player' ? 'Player' : 'Coach' }},
+            <p>Welcome {{ Auth::user()->user_type == 'player' ? 'player' : 'coach' }},
                 {{ Auth::user()->firstname }}
             </p>
         </h2>
@@ -36,13 +35,13 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                     <div class="ml-4 flex min-w-0 flex-1 gap-2">
-                                        <span class="truncate font-medium text-gray-900">Document:
-                                            {{ $doc->filename }}</span>
+                                        <a href="{{ $doc->getFileURL() }}">
+                                            {{ $doc->filename }}</a>
                                     </div>
                                 </div>
                                 <div class="ml-4 flex-shrink-0">
-                                    <a href="{{ $doc->getFileURL() }}" target="_blank"
-                                        class="font-medium text-indigo-600 hover:text-indigo-500">View</a>
+
+
                                 </div>
                             </li>
                         @endforeach
@@ -166,13 +165,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
-
-
-
-
-
 </x-app-layout>

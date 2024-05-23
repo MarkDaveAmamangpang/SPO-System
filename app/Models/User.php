@@ -23,11 +23,13 @@ class User extends Authenticatable
         'idnumber',
         'suffix',
         'sex',
-        'type',
+        'user_type',
         'birthdate',
         'email',
         'password',
         'profile_picture',
+        'lastlogin',
+        'archived_at',
     ];
 
     /**
@@ -43,6 +45,8 @@ class User extends Authenticatable
     protected $casts = [
         'birthdate' => 'datetime',
     ];
+
+    protected $dates = ['archived_at', 'lastlogin'];
 
     /**
      * Get the attributes that should be cast.
@@ -64,4 +68,37 @@ class User extends Authenticatable
             return url('img/default.png');
         }
     }
+
+    public function getProfileLink() {
+        return route('dashboard', ['id' => $this->id]);
+    }
+
+
+    public function scopeArchived($query)
+    {
+        return $query->whereNotNull('archived_at');
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->whereNull('archived_at');
+    }
+
+    public function archive()
+    {
+        $this->archived_at = now();
+        $this->save();
+    }
+
+    public function unarchive()
+    {
+        $this->archived_at = null;
+        $this->save();
+    }
+
+    public function isArchived()
+{
+    return !is_null($this->archived_at);
+}
+
 }

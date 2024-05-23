@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'suffix' => ['nullable', 'string', 'max:255'],
             'sex' => ['nullable', 'string', 'in:male,female,other'],
-            'type' => ['nullable', 'string'], // Add validation for 'type'
+            'user_type' => ['nullable', 'string'], // Add validation for 'type'
             'birthdate' => ['nullable', 'date'], // Add validation for 'birthdate'
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
             'idnumber' => $request->idnumber,
             'suffix' => $request->suffix,
             'sex' => $request->sex,
-            'type' => $request->type,
+            'user_type' => $request->user_type,
             'birthdate' => $request->birthdate,
             'email' => $request->email,
             'password' => Hash::make($request->password),

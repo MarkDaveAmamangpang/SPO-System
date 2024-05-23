@@ -1,205 +1,160 @@
-    <!DOCTYPE html>
-    <html lang="en">
+@extends('layouts.layout')
+@section('content')
+    <div class="main-title">
+        <h2>DASHBOARD</h2>
+    </div>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Admin Dashboard</title>
+    <div class="main-cards">
 
-        <!-- Open Sans Font -->
-        <link
-            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
-            rel="stylesheet">
+        <div class="card">
+            <div class="card-inner">
+                <h2>Active Coaches</h2>
+                <span class="material-icons-outlined">supervisor_account</span>
+            </div>
 
-        <!-- Material Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-
-        <!-- Bootstrap Icons -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="{{ asset('css/admindashboard.css') }}">
-    </head>
-
-    <body>
-        <div class="grid-container">
-
-            <!-- Header -->
-            <header class="header">
-                <div class="menu-icon" onclick="openSidebar()">
-                    <span class="material-icons-outlined">menu</span>
-                </div>
-                <div class="header-left">
-                    {{-- <span class="material-icons-outlined">search</span> --}}
-                </div>
-                <div class="header-right">
-                    <span class="material-icons-outlined">account_circle</span>
-                </div>
-            </header>
-            <!-- End Header -->
-
-            <!-- Sidebar -->
-            <aside id="sidebar">
-                <div class="sidebar-title">
-                    <div class="sidebar-brand">
-                        <img src="{{ asset('img/LNULOGO.PNG') }}" class="logosize">
-                    </div>
-                    <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
-                </div>
-
-                <ul class="sidebar-list">
-                    <li class="sidebar-list-item">
-
-                        <a href="{{ route('admin.admindashboard') }}">
-
-                            <span class="material-icons-outlined">dashboard</span> Dashboard
-                        </a>
-                    </li>
-                    <li class="sidebar-list-item">
-                        <a href="#" class="sidebar-link" data-url="{{ route('admin.awards') }}">
-                            <span class="material-icons-outlined">leaderboard</span> Awards
-                        </a>
-                    </li>
-                    <li class="sidebar-list-item">
-                        <a href="#"class="sidebar-link" data-url="{{ route('admin.player-accounts') }}">
-                            <span class="material-icons-outlined">person</span> Players
-                        </a>
-                    </li>
-                    <li class="sidebar-list-item">
-                        <a href="#" class="sidebar-link" data-url="{{ route('admin.coaches-accounts') }}">
-                            <span class="material-icons-outlined">supervisor_account</span> Coaches
-                        </a>
-                    </li>
-                </ul>
-            </aside>
-            <!-- End Sidebar -->
-
-            <!-- Main -->
-            <main class="main-container">
-                <div class="main-title">
-                    <h2>DASHBOARD</h2>
-                </div>
-
-                <div class="main-cards">
-
-                    <div class="card">
-                        <div class="card-inner">
-                            <h2>Active Coaches</h2>
-                            <span class="material-icons-outlined">supervisor_account</span>
-                        </div>
-
-                        <h1>20</h1>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-inner">
-                            <h2>Active Players</h2>
-                            <span class="material-icons-outlined">subscriptions</span>
-                        </div>
-                        <h1>230</h1>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-inner">
-                            <h2>Achieved awards</h2>
-                            <span class="material-icons-outlined">groups</span>
-                        </div>
-                        <h1>560</h1>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-inner">
-                            <h2>Sports Event Attended</h2>
-                            <span class="material-icons-outlined">
-                                event_available
-                            </span>
-                        </div>
-                        <h1>200</h1>
-                    </div>
-
-                </div>
-
-                <div class="products">
-
-                    <div class="product-card">
-                        <h2 class="product-description">Latest Updates</h2>
-                        <p class="text-secondary">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet facilisis nulla,
-                            consectetur pulvinar diam. Aliquam tempus vel quam.
-                        </p>
-                        <button type="button" class="product-button">
-                            <span class="material-icons-outlined">add</span>
-                        </button>
-                    </div>
-
-                    <div class="social-media">
-                        <div class="product">
-
-                            <div>
-                                <div class="product-icon background-red">
-                                    <i class="material-icons-outlined">supervisor_account</i>
-                                </div>
-                                <h1 class="text-red">+20</h1>
-                                <p class="text-secondary">Newly assigned coaches.</p>
-                            </div>
-
-                            <div>
-                                <div class="product-icon background-green">
-                                    <i class="bi bi-person-check"></i>
-                                </div>
-                                <h1 class="text-green">+15</h1>
-                                <p class="text-secondary">Newly added players</p>
-                            </div>
-
-                            <div>
-                                <div class="product-icon background-orange">
-                                    <i class="bi bi-award-fill"></i>
-                                </div>
-                                <h1 class="text-orange">+10</h1>
-                                <p class="text-secondary">
-                                    awards received by players and coaches in the last scuaa event
-                                </p>
-                            </div>
-
-                            <div>
-                                <div class="product-icon background-blue">
-                                    <i class="bi bi-linkedin"></i>
-                                </div>
-                                <h1 class="text-blue">+102</h1>
-                                <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </main>
-
-
+            <h1>20</h1>
         </div>
 
-        <script src="{{ asset('js/scripts.js') }}"></script>
-        <script>
-            // Add an event listener to all sidebar links
-            document.querySelectorAll('.sidebar-link').forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault(); // Prevent the default link behavior
+        <div class="card">
+            <div class="card-inner">
+                <h2>Active Players</h2>
+                <span class="material-icons-outlined">subscriptions</span>
+            </div>
+            <h1>230</h1>
+        </div>
 
-                    // Fetch the URL from the data-url attribute
-                    const url = this.getAttribute('data-url');
+        <div class="card">
+            <div class="card-inner">
+                <h2>Achieved awards</h2>
+                <span class="material-icons-outlined">groups</span>
+            </div>
+            <h1>560</h1>
+        </div>
 
-                    // Fetch the content using AJAX
-                    fetch(url)
-                        .then(response => response.text())
-                        .then(data => {
-                            // Update the main container with the loaded content
-                            document.querySelector('.main-container').innerHTML = data;
-                        })
-                        .catch(error => console.error('Error fetching content:', error));
-                });
-            });
-        </script>
+        <div class="card">
+            <div class="card-inner">
+                <h2>Sports Event Attended</h2>
+                <span class="material-icons-outlined">
+                    event_available
+                </span>
+            </div>
+            <h1>200</h1>
+        </div>
 
-    </body>
+    </div>
 
-    </html>
+    <div class="products">
+
+        <div class="product-card">
+            <div id="default-carousel" class="relative w-full" data-carousel="slide">
+
+                <div class="relative h-72 overflow-hidden rounded-lg">
+
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="{{ asset('carousel/sports1.jpg') }}">
+                    </div>
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="{{ asset('carousel/sports2.jpg') }}"
+                            class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="Sports 2">
+                    </div>
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="{{ asset('carousel/sports3.jpg') }}"
+                            class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="Sports 3">
+                    </div>
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="{{ asset('carousel/sports4.jpg') }}"
+                            class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="Sports 4">
+                    </div>
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="{{ asset('carousel/sports5.jpg') }}"
+                            class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="Sports 5">
+                    </div>
+                </div>
+                <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+                        data-carousel-slide-to="0"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+                        data-carousel-slide-to="1"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+                        data-carousel-slide-to="2"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
+                        data-carousel-slide-to="3"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
+                        data-carousel-slide-to="4"></button>
+                </div>
+                <button type="button"
+                    class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-prev>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 1 1 l4 4" />
+                        </svg>
+                        <span class="sr-only">Previous</span>
+                    </span>
+                </button>
+                <button type="button"
+                    class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-next>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                        <span class="sr-only">Next</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="social-media">
+            <div class="product">
+
+                <div>
+                    <div class="product-icon background-red">
+                        <i class="material-icons-outlined">supervisor_account</i>
+                    </div>
+                    <h1 class="text-red">+20</h1>
+                    <p class="text-secondary">Newly assigned coaches.</p>
+                </div>
+
+                <div>
+                    <div class="product-icon background-green">
+                        <i class="bi bi-person-check"></i>
+                    </div>
+                    <h1 class="text-green">+15</h1>
+                    <p class="text-secondary">Newly added players</p>
+                </div>
+
+                <div>
+                    <div class="product-icon background-orange">
+                        <i class="bi bi-award-fill"></i>
+                    </div>
+                    <h1 class="text-orange">+10</h1>
+                    <p class="text-secondary">
+                        awards received by players and coaches in the last scuaa event
+                    </p>
+                </div>
+
+                <div>
+                    <div class="product-icon background-blue">
+                        <i class="bi bi-linkedin"></i>
+                    </div>
+                    <h1 class="text-blue">+102</h1>
+                    <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+@endsection

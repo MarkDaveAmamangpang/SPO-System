@@ -53,11 +53,11 @@
 
         <!-- Type -->
         <div>
-            <x-input-label for="type" :value="__('Type')" />
-            <select id="type" name="type" class="block mt-1 w-full" required autocomplete="type">
-                {{-- <option value="admin">Admin</option> --}}
-                <option value="player">Player</option>
-                <option value="coach">Coach</option>
+            <x-input-label for="user_type" :value="__('user_type')" />
+            <select id="user_type" name="user_type" class="block mt-1 w-full" required autocomplete="user_type">
+                <option value="player">player</option>
+                <option value="coach">coach</option>
+                <option value="admin">admin</option>
             </select>
             <x-input-error :messages="$errors->get('type')" class="mt-2" />
         </div>

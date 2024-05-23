@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
-            $table->string('idnumber');
+            $table->string('idnumber')->unique();
             $table->string('suffix')->nullable();
-            $table->string('sex')->nullable();
-            $table->string('type')->nullable();
+            $table->string('sex');
+            $table->enum('user_type', ['player', 'coach', 'admin']);
             $table->date('birthdate')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
