@@ -18,6 +18,7 @@ class AdminController extends Controller
             'coaches' => $coaches,
             'awards' => $awards,
             'players' => $players,
+            
         ]);
     }
 
@@ -82,4 +83,38 @@ class AdminController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function viewPlayer($id)
+    {
+        $player = User::with('documents')->findOrFail($id);
+        return view('admin.player-view', compact('player'));
+    }
+
+    public function viewCoach($id)  
+    {
+        $coach = User::findOrFail($id);
+
+        return view('admin.coach-view', compact('coach'));
+    }
+
+
+    public function printPlayers()
+    {
+        $players = User::where('user_type', 'player')->active()->get();
+        return view('admin.print-player', ['players' => $players]);
+    }
+    
+
+public function printCoaches()
+{
+    $coaches = User::where('user_type', 'coach')->get();
+    return view('admin.print-coach', ['coaches' => $coaches]);
+}
+
+public function printAwards()
+{
+    $awards = Achievement::all();
+    return view('admin.print-award', ['awards' => $awards]);
+}
+
 }

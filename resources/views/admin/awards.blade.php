@@ -25,7 +25,7 @@
                         <td class="px-6 py-4">{{ $award->event }}</td>
                         <td class="px-6 py-4">{{ $award->sportstype }}</td>
                         <td class="px-6 py-4">{{ $award->placing }}</td>
-                        <td class="px-6 py-4">{{ $award->id }}</td>
+                        <td class="px-6 py-4">{{ $award->user->lastname ?? 'N/A' }}</td>
                         <td class="px-6 py-4">
                             <a href="{{ route('admin.award-edit', $award->id) }}"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>

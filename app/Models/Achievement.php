@@ -36,4 +36,9 @@ public function getPlacing()
 {
     return $this->placing;
 }
+
+public function getUserLastname()
+{
+    return $this->user ? $this->user->lastname : null;
+}
 }

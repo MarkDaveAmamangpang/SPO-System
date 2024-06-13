@@ -25,12 +25,18 @@
                         class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for items">
                 </div>
-                <div class="pb-2">
+                <div class="flex justify-between items-center py-4 space-x-4">
                     <button type="button" id="archive-button"
                         class="inline-flex items-center px-4 py-3 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         Archive
                     </button>
+                    <button type="button" onclick="printCoaches()"
+                        class="inline-flex items-center px-4 py-3 text-sm font-medium text-gray-700 bg-gray-200 border border-gray-200 rounded-md shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                        Print Coaches
+                    </button>
                 </div>
+
+
             </div>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -92,11 +98,11 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4">
-                                {{ $coach->lastlogin ? \Carbon\Carbon::parse($player->lastlogin)->format('Y-m-d') : 'N/A' }}
+                                {{ $coach->lastlogin ? \Carbon\Carbon::parse($coach->lastlogin)->format('Y-m-d') : 'N/A' }}
 
                             </td>
                             <td class="px-6 py-4">
-                                <a href="#"
+                                <a href="{{ route('admin.view-coach', ['id' => $coach->id]) }}"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">view</a>
                             </td>
                         </tr>
@@ -107,6 +113,22 @@
     </div>
 
     <script>
+        function printCoaches() {
+            fetch('{{ route('admin.print.coaches') }}')
+                .then(response => response.text())
+                .then(data => {
+                    const printWindow = window.open('', '', 'height=600,width=800');
+                    printWindow.document.write(data);
+                    printWindow.document.close();
+                    printWindow.onload = function() {
+                        printWindow.print();
+                        printWindow.onafterprint = function() {
+                            printWindow.close();
+                        };
+                    };
+                })
+                .catch(error => console.error('Error fetching print content:', error));
+        }
         document.getElementById('archive-button').addEventListener('click', function() {
             const form = document.getElementById('archive-form');
             const formData = new FormData(form);

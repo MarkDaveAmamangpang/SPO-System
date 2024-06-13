@@ -101,4 +101,9 @@ class User extends Authenticatable
     return !is_null($this->archived_at);
 }
 
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
+
 }
